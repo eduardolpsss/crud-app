@@ -1,0 +1,25 @@
+body{
+    background-color: #121212;
+    /* border: 1px solid red; */
+}
+
+main {
+    width: 50%;
+    margin: 50px auto;
+    text-align: center;
+    color: thistle;
+    /* border: 1px solid red; */
+}
+
+table {
+    margin: 50px auto;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    border: 1px solid thistle;
+}
+
+th, td {
+    padding: 5px;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crud App</title>
+
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body>
+    <main>
+        <!-- Campo de inclusão no banco de dados -->
+        <label>Name:</label>
+        <input type="text" id="name-input">
+        <button id="add-name-btn">Add Name</button>
+
+        <br><br><br>
+
+        <!-- Campo de busca no banco de dados -->
+        <div>
+            <input placeholder="search by name" id="search-input">
+            <button id="search-btn">Search</button>
+        </div>
+        
+        <!-- View da tabela do banco de dados -->
+        <table id="table">
+            <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Date Added</th>
+                <th>Delete</th>
+                <th>Edit</th>
+            </thead>
+
+            <!-- Campo dinâmico sendo usado pelo JavaScript -->
+            <tbody></tbody>
+        </table>
+        
+        <section hidden id="update-row">
+            <label>Name:</label>
+            <input type="text" id="update-name-input">
+            <button id="update-row-btn">Update</button>
+        </section>
+    </main>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
