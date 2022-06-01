@@ -6,6 +6,8 @@ const { request } = require('http');
 const { response } = require('express');
 dotenv.config();
 
+const dbService = require('./dbService');
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -29,4 +31,4 @@ app.get('/getAll', (request, response) =>{
 // Excluir no banco de dados
 
 // Dando start no local server
-app.listen(process.env.PORT, () => console.log('App is running.'));
+app.listen(process.env.PORT, () => console.log('[local server] connected'));

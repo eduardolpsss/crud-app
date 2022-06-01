@@ -1,1 +1,0 @@
-https://youtu.be/vrj9AohVhPA?t=1086 18:06

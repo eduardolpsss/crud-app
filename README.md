@@ -1,2 +1,2 @@
 # crudApp
- Fullstack app utilizando node.js, express & mysql
+Fullstack app utilizando node.js, express & mysql.

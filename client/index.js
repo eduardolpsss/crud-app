@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     loadHTMLTable([]);
 });
 
+// Função para informar quando a tabela estiver vazia
 function loadHTMLTable(data) {
     const table = document.querySelector('table tbody');
     let tableHtml = "";
