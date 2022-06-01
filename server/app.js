@@ -13,7 +13,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // ROUTES DO PROJETO
-
 // Criar no banco de dados
 app.post('/insert', (request, response) =>{
 
