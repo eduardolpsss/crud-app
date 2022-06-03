@@ -6,6 +6,7 @@ const { request } = require('http');
 const { response } = require('express');
 dotenv.config();
 
+// Incluindo conexão com o banco de dados
 const dbService = require('./dbService');
 
 app.use(cors());
@@ -14,15 +15,29 @@ app.use(express.urlencoded({ extended: false }));
 
 // ROUTES DO PROJETO
 // Criar no banco de dados
-app.post('/insert', (request, response) =>{
+app.post('/insert', (request, response) => {
+    const { user_name } = request.body;
+    const db = dbService.getDbServiceInstance();
 
+    // Chamando função de inserção de nome na tabela do banco de dados
+    const result = db.insertNewName(user_name);
+
+    result
+    .then(data => response.json({ data: data }))
+    .catch(err => console.log(err));
 });
 
 // Ler no banco de dados
 app.get('/getAll', (request, response) =>{
-    response.json({
-        sucess: true
-    });
+
+    // Chamando função que pega dados tabela do banco de dados
+    const db = dbService.getDbServiceInstance();
+
+    const result = db.getAllData();
+
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => console.log(err));
 });
 
 // Update no banco de dados
