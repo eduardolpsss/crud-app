@@ -1,6 +1,8 @@
 const mysql = require('mysql');
 const dotenv = require('dotenv');
-const { Interface } = require('readline');
+const {
+    Interface
+} = require('readline');
 
 let instance = null;
 
@@ -24,32 +26,31 @@ connection.connect((err) => {
 });
 
 // Criando classe que inclui funcionalidades do banco de dados
-class dbService{
-    static getDbServiceInstance(){
+class dbService {
+    static getDbServiceInstance() {
         return instance ? instance : new dbService();
     }
 
-    async getAllData(){
+    // Exibição de dados
+    async getAllData() {
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM users_infos";
+                const query = "SELECT * FROM users_infos;";
 
                 connection.query(query, (err, results) => {
-                    if (err) {
-                        reject(new Error(err.message));
-                    }
+                    if (err) reject(new Error(err.message));
                     resolve(results);
                 })
             });
-            // console.log(response);
-            return response;
 
+            return response;
         } catch (error) {
             console.log(error);
         }
     }
 
-    async insertNewName(user_name){
+    // Inserção de itens na tabela
+    async insertNewName(user_name) {
         try {
             const dateAdded = new Date();
             const insertId = await new Promise((resolve, reject) => {
@@ -62,14 +63,74 @@ class dbService{
                     resolve(result.insertId);
                 })
             });
-            console.log('[database] item inserido no banco de dados, id: '+insertId);
+            console.log('[database] item inserido no banco de dados, id: ' + insertId);
 
             // Retornando objeto com as informações presentes no banco de dados
             return {
-                id : insertId,
-                user_name : user_name,
-                dateAdded : dateAdded
+                id: insertId,
+                user_name: user_name,
+                dateAdded: dateAdded
             };
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    // Delete pelo botão
+    async deleteRowById(id) {
+        try {
+            id = parseInt(id, 10);
+            const response = await new Promise((resolve, reject) => {
+                const query = "DELETE FROM users_infos WHERE id = ?";
+
+                connection.query(query, [id], (err, result) => {
+                    if (err) {
+                        reject(new Error(err.message));
+                    }
+                    resolve(result.affectedRows);
+                })
+            });
+            // Método de controle de exclusão para dar reaload na página
+            return response === 1 ? true : false;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
+
+    async updateNameById(id, user_name) {
+        try {
+            id = parseInt(id, 10);
+            const response = await new Promise((resolve, reject) => {
+                const query = "UPDATE users_infos SET user_name = ? WHERE id = ?";
+
+                connection.query(query, [user_name, id], (err, result) => {
+                    if (err) {
+                        reject(new Error(err.message));
+                    }
+                    resolve(result.affectedRows);
+                })
+            });
+            // Método de controle de exclusão para dar reaload na página
+            return response === 1 ? true : false;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
+
+    async searchByName(user_name) {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * FROM users_infos WHERE user_name = ?;";
+
+                connection.query(query, [user_name], (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+
+            return response;
         } catch (error) {
             console.log(error);
         }

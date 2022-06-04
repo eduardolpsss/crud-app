@@ -1,25 +1,95 @@
-body{
-    background-color: #121212;
-    /* border: 1px solid red; */
+html {
+    --bg: #121212;
+    --color-headings: #0077FF;
+    --color-text: #FCFCFC;
+    ;
+}
+
+body {
+    background-color: var(--bg);
+    transition: 0.2s;
+}
+
+h1 {
+    margin: 0;
+    color: var(--color-headings);
+    transition: 0.2s;
+}
+
+p {
+    color: var(--color-text);
+    transition: 0.2s;
+    grid-area: content;
+    font-size: 1.1em;
+    line-height: 1.8em;
+    margin-top: 2em;
 }
 
 main {
     width: 50%;
     margin: 50px auto;
     text-align: center;
-    color: thistle;
+    /* color: whitesmoke; */
     /* border: 1px solid red; */
 }
+
 
 table {
     margin: 50px auto;
 }
 
-table, th, td {
+table,
+th,
+td {
     border-collapse: collapse;
-    border: 1px solid thistle;
+    border: 1px solid black;
 }
 
-th, td {
+th,
+td {
     padding: 5px;
+}
+
+
+/* CSS do botão switch color */
+input[type=checkbox] {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 52px;
+    height: 27px;
+    background: grey;
+    float: right;
+    border-radius: 100px;
+    position: relative;
+}
+
+label::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 90px;
+    transition: 0.3s;
+}
+
+input:checked+label {
+    background-color: var(--color-headings);
+}
+
+input:checked+label::after {
+    left: calc(100% - 5px);
+    transform: translateX(-100%);
+}
+
+label:active:after {
+    width: 45px;
 }

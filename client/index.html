@@ -1,32 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crud App</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crud App</title>
 
-    <link rel="stylesheet" href="stylesheet.css">
+<!-- Include Bootstrap’s CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+<!-- Fonte Roboto -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+
+
+<link rel="stylesheet" href="stylesheet.css">
 </head>
 
 <body>
-    <main>
-        <!-- Campo de inclusão no banco de dados -->
-        <label>Name:</label>
-        <input type="text" id="name-input">
-        <button id="add-name-btn">Add Name</button>
 
-        <br><br><br>
+    <main>
+        <header>
+            <h1>CRUD App</h1>
+            <br>
+            <!-- Botão switch color -->
+            <div class="toggle">
+                <input id="switch" type="checkbox" name="switch-theme">
+                <label for="switch">Toggle</label>
+            </div>
+        </header>
+
+        <br>
+
+        <!-- Campo de inclusão no banco de dados -->
+        <div class="input-group mb-3">
+            <input id="name-input" type="text" class="form-control" placeholder="name">
+
+            &#160;&#160;
+
+            <div class="input">
+                <button id="add-name-btn" class="btn btn-light" type="button">Add in db</button>
+            </div>
+        </div>
+
+        <br>
 
         <!-- Campo de busca no banco de dados -->
-        <div>
-            <input placeholder="search by name" id="search-input">
-            <button id="search-btn">Search</button>
+        <div class="input-group mb-3">
+            <input id="search-input" type="text" class="form-control" placeholder="search by name">
+
+            &#160;&#160;
+
+            <div class="input">
+                <button id="search-btn" class="btn btn-light" type="button">Search in db</button>
+            </div>
         </div>
-        
+
+        <br>
+
         <!-- View da tabela do banco de dados -->
-        <table id="table">
+        <table id="table" class="table table-striped table-dark">
             <thead>
                 <th>ID</th>
                 <th>Name</th>
@@ -38,12 +71,27 @@
             <!-- Campo dinâmico sendo usado pelo JavaScript -->
             <tbody></tbody>
         </table>
-        
-        <section hidden id="update-row">
-            <label>Name:</label>
-            <input type="text" id="update-name-input">
-            <button id="update-row-btn">Update</button>
+
+        <br>
+
+        <!-- Sessão escondida para a atualização de itens da tabela -->
+        <section hidden id="section-update-row">
+            <div class="input-group mb-3">
+                <input id="update-name-input" type="text" class="form-control" placeholder="new name">
+
+                &#160;&#160;
+
+                <div class="input">
+                    <button id="update-row-btn" class="btn btn-light" type="button">Update</button>
+                </div>
+            </div>
         </section>
+
+        <footer>
+            <p>
+                © Eduardo Luiz Pontes de Souza
+            </p>
+        </footer>
     </main>
 
     <script src="index.js"></script>
